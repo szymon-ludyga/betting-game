@@ -12,7 +12,7 @@ let port = 3000;
 // 	port = process.env.PORT || ENV.port;
 // }
 
-app.use("/images", express.static("./images"));
+app.use('/images', express.static('./images'));
 app.use(express.static('./frontend'));
 
 app.use((req, res, next) => {
@@ -29,14 +29,14 @@ app.use((req, res, next) => {
 });
 
 app.get('/bet', function(req, res, next) {
-    let result = controller.getRandomResult();
-    res.json({freeGame: result.free, coins: result.coins, num: result.num});
+	let result = controller.getRandomResult();
+	res.json({freeGame: result.free, coins: result.coins, num: result.num});
 });
 
 app.get('/rtp', function(req, res, next) {
-    let rtp = controller.getRtp();
-    let rtpPerc = rtp.win/rtp.bet*100;
-    res.json({result: rtpPerc});
+	let rtp = controller.getRtp();
+	let rtpPerc = rtp.win/rtp.bet*100;
+	res.json({result: rtpPerc});
 });
 
 app.listen(port);

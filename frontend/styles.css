@@ -4,8 +4,8 @@
 }
 
 .grid-container {
-    margin-left: 25%;
-    width: 75%;
+    margin-left: 26%;
+    width: 74%;
     margin-top: -90px;
     display: grid;
     align-items: center;
@@ -101,5 +101,15 @@ div {
     100% {
         visibility: hidden;
         opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        visibility: visible;
+        opacity: 1;
     }
 }
