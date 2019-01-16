@@ -1,0 +1,105 @@
+* {
+    font-family: Verdana, Geneva, sans-serif;
+    font-style: normal;
+}
+
+.grid-container {
+    margin-left: 25%;
+    width: 75%;
+    margin-top: -90px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    background-color: white;
+    padding: 0px;
+    grid-auto-rows: minmax(10px, auto);   
+}
+  
+.grid-container > div {
+    font-size: 50px;
+    text-align: center;
+    padding: 10px 10px;
+}
+
+button {
+    width: 20%;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    margin: 0 auto;
+    text-decoration: none;
+    display: block;
+    font-size: 25px;
+}
+
+p {
+    text-align: center;
+    font-size: 25px;
+}
+
+img {
+    visibility: hidden;
+}
+
+.button-bet {
+    margin-bottom: 30px;
+    background-color: rgb(87, 129, 209);
+}
+
+.button-rtp {
+    margin-bottom: 30px;
+    background-color: rgba(27, 77, 12, 0.411);
+}
+
+#result {
+    margin-bottom: 0px;
+}
+
+div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 50px;
+    text-align: center;
+}
+
+#bar {
+    width: 0%;
+    height: 40px;
+    padding: 15px 0;
+    margin-left: 25%;
+    margin-right: 25%;
+    font-size: 30px;
+    text-align: right;
+    background-color: rgb(87, 194, 87);
+}
+
+.fadeup {
+    position: relative;
+    /* animation: fadeUp 1s 1; */
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeUp {
+    0%   {top: 75px;}
+    100%  {top: 0px;}
+}
+
+@keyframes fadeDown {
+    0%   {top: -75px;}
+    100%  {top: 0px;}
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
