@@ -5,8 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "test": "mocha --exit --timeout 5000",
-    "lint": "eslint ."
+    "test": "mocha --exit --timeout 2000",
+    "lint": "eslint .",
+    "lt": "lt --port 3000"
   },
   "author": "Szymon Ludyga",
   "license": "ISC",

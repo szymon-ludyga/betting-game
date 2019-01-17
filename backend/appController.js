@@ -53,9 +53,9 @@ let evaluate = (type) => {
 		coinsWon = 0;
 		freeGame = false;
 	}
+	return { freeGame: freeGame, coinsWon: coinsWon, num: num};
 };
 
-
 module.exports = {
-	getRandomResult, getRtp
+	getRandomResult, getRtp, evaluate
 };

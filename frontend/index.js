@@ -2,6 +2,8 @@
 let coins = 10000, rtpPerc = 0, delay = 0; 
 
 let results = [], rtpArr = [];
+let width = 0;
+
 
 function onLoad() {
 	document.getElementById('result').innerHTML = coins;
@@ -9,6 +11,8 @@ function onLoad() {
 }
 
 function onBet(type) {
+
+	let snd = new Audio("content/cash.wav");
 
 	delay = 0;
 
@@ -36,6 +40,7 @@ function onBet(type) {
 			}, 1500);
 				
 			setTimeout(() => {
+				snd.play();
 				moveCoins('20', type);
 				document.getElementById('result').innerHTML = coins;
 			}, 2500);
@@ -48,12 +53,10 @@ function onBet(type) {
 		results = getResult();
 
 		if(results[0] === 20) {
+
+			snd.play();
 			moveCoins('20', type);
 		}
-		// else
-		// {
-		//     moveCoins('0', type);
-		// }
 		coins += results[0];
 
 		document.getElementById('result').innerHTML = coins;
@@ -84,38 +87,45 @@ function onBet(type) {
 }
 
 function onRtp() {
-	document.getElementById('game').parentNode.removeChild(document.getElementById('game'));
-	document.getElementById('rtp').style.visibility = 'visible';
 
-	moveBar();
+	let elem = document.getElementById('bar'); 
+	document.getElementById('game').parentNode.removeChild(document.getElementById('game'));
+	document.getElementById('progress-text').textContent = 'RTP simulation';
+	document.getElementById('rtp').style.visibility = 'visible';
 
 	let timerId = setInterval(getUserRtp, 1000);
 	setTimeout(() => { 
 		clearInterval(timerId);
-		let maxVal = Math.max(...rtpArr);
-		console.log(maxVal);
+		let maxVal = Math.max(...rtpArr).toFixed(2);
 		let arrAvg = rtpArr.reduce((a,b) => a + b, 0) / rtpArr.length;
 		document.getElementById('rtp-result').textContent = 'RTP result: ' + arrAvg.toFixed(2) + '%';
+
+		document.getElementById('bar').textContent = '';
+		document.getElementById('bar').style.backgroundColor = 'rgb(18, 83, 18)';
+		document.getElementById('progress-text').textContent = `Best result: ${maxVal*50000} coins won out of 500000 bets (RTP ${maxVal}%).`;
+		document.getElementById('progress-text').style.fontSize = '25px';
+		elem.style.width = width + '%'; 
+
 	}, 20500);
 }
 
 function moveCoins(coin, type) {
 	if(coin === '-10') {
+		document.getElementById('current_img').src = '../content/onecoin.jpg';
 		document.getElementById('current_img').style.visibility = 'visible';
 		document.getElementById('current').textContent = '- 10';
 		document.getElementById('current').style.color = 'red';
-		document.getElementById('current').style.animation = 'fadeUp 1.5s 1';
-		document.getElementById('current_img').src = '../images/onecoin.jpg';
-		document.getElementById('current_img').style.animation = 'fadeUp 1.5s 1';
+		document.getElementById('current').style.animation = 'fadeUp 1.5s 1.5';
+		document.getElementById('current_img').style.animation = 'fadeUp 1.5s 1.5';
 	}
 	else if(coin === '20') {
+		document.getElementById('current_img').src = '../content/twocoins.jpg';
 		document.getElementById('current_img').style.visibility = 'visible';
 		document.getElementById('current').textContent = '+ 20';
 		document.getElementById('current').style.color = 'green';
 		document.getElementById('current').style.marginLeft = '25px';
-		document.getElementById('current').style.animation = 'fadeUp 1.5s 1';
-		document.getElementById('current_img').src = '../images/twocoins.jpg';
-		document.getElementById('current_img').style.animation = 'fadeUp 1.5s 1';
+		document.getElementById('current').style.animation = 'fadeUp 1.5s 1.5';
+		document.getElementById('current_img').style.animation = 'fadeUp 1.5s 1.5';
 		if(type === 'free')
 		{
 			document.getElementById('free').textContent = 'Free Round!';
@@ -132,26 +142,6 @@ function moveCoins(coin, type) {
 function onBackToGame() {
 	document.getElementById('rtp').style.visibility = 'hidden';
 	location.reload();
-}
-
-function moveBar() {
-	let elem = document.getElementById('bar');   
-	let width = 0;
-	let id = setInterval(frame, 10);
-	function frame() {
-		if (width >= 50) {
-			clearInterval(id);
-			width = 0;
-			document.getElementById('bar').textContent = '';
-			document.getElementById('progress-text').textContent = '';
-			elem.style.width = width + '%'; 
-		} else {
-			width += 0.025;
-			document.getElementById('progress-text').textContent = 'Progress';
-			elem.textContent = Math.round(width*2) + '%';
-			elem.style.width = width + '%'; 
-		}
-	}
 }
 
 function getResult() {
@@ -173,7 +163,9 @@ function getResult() {
 }
 
 function getUserRtp() {
+	let elem = document.getElementById('bar'); 
 	console.log('start function');
+	width += 5;
 	rtpPerc = 0;
 	let xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -187,5 +179,8 @@ function getUserRtp() {
 	xhttp.send();
 
 	rtpArr.push(rtpPerc);
-	document.getElementById('rtp-result').textContent = 'RTP: ' + rtpPerc.toFixed(2) + '%';
+
+	elem.style.width = width + '%';
+	elem.textContent = Math.round(width) + '%';
+	document.getElementById('rtp-result').textContent = 'Current RTP: ' + rtpPerc.toFixed(2) + '%';
 }

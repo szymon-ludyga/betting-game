@@ -46,17 +46,32 @@ img {
 }
 
 .button-bet {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     background-color: rgb(87, 129, 209);
 }
 
+.button-goback {
+    width: 40%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(165, 43, 79);
+}
+
 .button-rtp {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     background-color: rgba(27, 77, 12, 0.411);
 }
 
 #result {
     margin-bottom: 0px;
+}
+
+#rtp {
+    margin: auto;
+    width: 50%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
 }
 
 div {
@@ -70,27 +85,48 @@ div {
     width: 0%;
     height: 40px;
     padding: 15px 0;
-    margin-left: 25%;
-    margin-right: 25%;
+    /* margin-left: 25%;
+    margin-right: 25%; */
     font-size: 30px;
     text-align: right;
-    background-color: rgb(87, 194, 87);
+    background-color: rgb(104, 219, 104);
+}
+
+@media (max-width: 1000px) {
+
+    button {
+        width: 35%;
+    }
+    
+    .button-goback {
+        width: 70%;
+    }
+
+    img {
+        margin-top: 15px;
+    }
+    .grid-container {
+        margin-top: -92px;
+        margin-left: 40%;
+        width: 60%;
+    }
+/* 
+    .grid-container > div {
+        font-size: 120%;
+        text-align: center;
+    } */
+
 }
 
 .fadeup {
     position: relative;
     /* animation: fadeUp 1s 1; */
     animation-direction: alternate;
-    animation-fill-mode: forwards;
+    /* animation-fill-mode: forwards; */
 }
 
 @keyframes fadeUp {
     0%   {top: 75px;}
-    100%  {top: 0px;}
-}
-
-@keyframes fadeDown {
-    0%   {top: -75px;}
     100%  {top: 0px;}
 }
 
