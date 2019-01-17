@@ -4,7 +4,6 @@ const chai     = require('chai');
 const chaiHttp = require('chai-http');
 
 const server = require('../app.js');
-
 const controller = require('../backend/appController');
 
 chai.use(chaiHttp);
@@ -14,8 +13,7 @@ chai.should();
 
 describe('Backend controller test suite', function () {
 
-	it('evaluate() function testing ### Should return correct object', function() {
-		
+	it('evaluate() function testing ### Function should return correct object', function() {
 		let evaluate = controller.evaluate('normal');
 		evaluate.should.have.all.keys('freeGame', 'num', 'coinsWon');
 		evaluate.num.should.be.within(0, 19);
@@ -25,8 +23,7 @@ describe('Backend controller test suite', function () {
 		evaluate.freeGame.should.be.a('boolean');
 	});
 
-	it('getRandomResult() function testing ### Should return correct object', function() {
-		
+	it('getRandomResult() function testing ### Function should return correct object', function() {	
 		let betResult = controller.getRandomResult();
 		betResult.should.have.all.keys('free', 'num', 'coins');
 		betResult.num.should.be.within(0, 19);
@@ -36,8 +33,7 @@ describe('Backend controller test suite', function () {
 		betResult.free.should.be.a('boolean');
 	});
 
-	it('getRtp() function testing ### Should return correct object', function() {
-		
+	it('getRtp() function testing ### Function should return correct object', function() {
 		let rtpResult = controller.getRtp();
 		rtpResult.should.have.all.keys('win', 'bet');
 		rtpResult.bet.should.be.equal(5000000);
@@ -45,7 +41,6 @@ describe('Backend controller test suite', function () {
 			return result > 3300000 && result < 3380000;
 		});
 	});
-
 });
 
 describe('Server test suite', function () {

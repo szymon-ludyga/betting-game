@@ -1,158 +1,149 @@
 
-let coins = 10000, rtpPerc = 0, delay = 0; 
-
+let coins = 10000, rtpPerc = 0, delay = 0, width = 0;
 let results = [], rtpArr = [];
-let width = 0;
 
+let elemBar, elemProgress, elemGame, elemRtp, 
+	elemRtpResult, elemWinInfo, elemCurrentCoin, 
+	elemImage, elemResult, elemError;
 
 function onLoad() {
-	document.getElementById('result').innerHTML = coins;
-	document.getElementById('rtp').style.visibility = 'hidden';
+	elemRtp = document.getElementById('rtp');
+	elemResult = document.getElementById('result');
+
+	elemResult.textContent = coins;
+	elemRtp.style.visibility = 'hidden';
 }
 
 function onBet(type) {
 
-	let snd = new Audio("content/cash.wav");
+	let snd = new Audio('content/cash.wav');
+
+	elemResult = document.getElementById('result');
 
 	delay = 0;
 
-	if (type === 'normal')
-	{
+	if (type === 'normal') {
 		moveCoins('-10', type);
+		
 		coins -= 10;
-
-		document.getElementById('result').innerHTML = coins;
+		elemResult.textContent = coins;
 		
 		results = getResult();
-
 		coins += results[0];
 
-		
-
-		if(results[0] === 20) {
+		if (results[0] === 20) {
 
 			delay += 2500;
 
 			setTimeout(() => {
-				document.getElementById('current').style.animation = 'fadeOut 1s';
-				document.getElementById('current_img').style.animation = 'fadeOut 1s';
-				document.getElementById('free').style.animation = 'fadeOut 1s';
+				changeCoinAnimation('fadeout');
 			}, 1500);
 				
 			setTimeout(() => {
 				snd.play();
 				moveCoins('20', type);
-				document.getElementById('result').innerHTML = coins;
+				elemResult.textContent = coins;
 			}, 2500);
-
 		}
 
 	}
-	else if (type === 'free')
-	{
+	else if (type === 'free') {
 		results = getResult();
 
-		if(results[0] === 20) {
+		if (results[0] === 20) {
 
 			snd.play();
 			moveCoins('20', type);
 		}
 		coins += results[0];
 
-		document.getElementById('result').innerHTML = coins;
+		elemResult.textContent = coins;
 	}
 
 	setTimeout(() => {
-		document.getElementById('current').style.animation = 'fadeOut 1s';
-		document.getElementById('current_img').style.animation = 'fadeOut 1s';
-		document.getElementById('free').style.animation = 'fadeOut 1s';
+		changeCoinAnimation('fadeout');
 	}, delay + 1500);
 
-	if(results[1])
-	{
+	if (results[1]) {
 		setTimeout(() => {
-			document.getElementById('current').textContent = '';
-			document.getElementById('free').textContent = '';
-			document.getElementById('current_img').style.visibility = 'hidden';
+			changeCoinAnimation('hide');
 			onBet('free');
 		}, delay + 2500);
 	}
 	else {
 		setTimeout(() => {
-			document.getElementById('current').textContent = '';
-			document.getElementById('free').textContent = '';
-			document.getElementById('current_img').style.visibility = 'hidden';
+			changeCoinAnimation('hide');
 		}, delay + 2500);
 	}
 }
 
-function onRtp() {
-
-	let elem = document.getElementById('bar'); 
-	document.getElementById('game').parentNode.removeChild(document.getElementById('game'));
-	document.getElementById('progress-text').textContent = 'RTP simulation';
-	document.getElementById('rtp').style.visibility = 'visible';
-
-	let timerId = setInterval(getUserRtp, 1000);
-	setTimeout(() => { 
-		clearInterval(timerId);
-		let maxVal = Math.max(...rtpArr).toFixed(2);
-		let arrAvg = rtpArr.reduce((a,b) => a + b, 0) / rtpArr.length;
-		document.getElementById('rtp-result').textContent = 'RTP result: ' + arrAvg.toFixed(2) + '%';
-
-		document.getElementById('bar').textContent = '';
-		document.getElementById('bar').style.backgroundColor = 'rgb(18, 83, 18)';
-		document.getElementById('progress-text').textContent = `Best result: ${maxVal*50000} coins won out of 500000 bets (RTP ${maxVal}%).`;
-		document.getElementById('progress-text').style.fontSize = '25px';
-		elem.style.width = width + '%'; 
-
-	}, 20500);
-}
-
 function moveCoins(coin, type) {
-	if(coin === '-10') {
-		document.getElementById('current_img').src = '../content/onecoin.jpg';
-		document.getElementById('current_img').style.visibility = 'visible';
-		document.getElementById('current').textContent = '- 10';
-		document.getElementById('current').style.color = 'red';
-		document.getElementById('current').style.animation = 'fadeUp 1.5s 1.5';
-		document.getElementById('current_img').style.animation = 'fadeUp 1.5s 1.5';
+	elemImage = document.getElementById('current_img');
+	elemCurrentCoin = document.getElementById('current');
+	elemWinInfo = document.getElementById('free');
+
+	if (coin === '-10') {
+		elemImage.src = '../content/onecoin.jpg';
+		elemImage.style.visibility = 'visible';
+		elemCurrentCoin.textContent = '- 10';
+		elemCurrentCoin.style.color = 'red';
+		elemCurrentCoin.style.animation = 'fadeUp 1.5s 1';
+		elemImage.style.animation = 'fadeUp 1.5s 1';
 	}
-	else if(coin === '20') {
-		document.getElementById('current_img').src = '../content/twocoins.jpg';
-		document.getElementById('current_img').style.visibility = 'visible';
-		document.getElementById('current').textContent = '+ 20';
-		document.getElementById('current').style.color = 'green';
-		document.getElementById('current').style.marginLeft = '25px';
-		document.getElementById('current').style.animation = 'fadeUp 1.5s 1.5';
-		document.getElementById('current_img').style.animation = 'fadeUp 1.5s 1.5';
-		if(type === 'free')
-		{
-			document.getElementById('free').textContent = 'Free Round!';
-			document.getElementById('free').style.animation = 'fadeIn 1.5s 1';
+	else if (coin === '20') {
+		elemImage.src = '../content/twocoins.jpg';
+		elemImage.style.visibility = 'visible';
+		elemCurrentCoin.textContent = '+ 20';
+		elemCurrentCoin.style.color = 'green';
+		elemCurrentCoin.style.marginLeft = '25px';
+		elemCurrentCoin.style.animation = 'fadeUp 1.5s 1';
+		elemImage.style.animation = 'fadeUp 1.5s 1';
+		if (type === 'free') {
+			elemWinInfo.textContent = 'Free Round!';
+			elemWinInfo.style.animation = 'fadeIn 1.5s 1';
 		}
-		else 
-		{
-			document.getElementById('free').textContent = 'Win!';
-			document.getElementById('free').style.animation = 'fadeIn 1.5s 1';
+		else {
+			elemWinInfo.textContent = 'Win!';
+			elemWinInfo.style.animation = 'fadeIn 1.5s 1';
 		}
 	}
 }
 
-function onBackToGame() {
-	document.getElementById('rtp').style.visibility = 'hidden';
-	location.reload();
+function changeCoinAnimation(type) {
+
+	elemWinInfo = document.getElementById('free');
+	elemImage = document.getElementById('current_img');
+	elemCurrentCoin = document.getElementById('current');
+
+	if (type === 'fadeout') {
+		elemCurrentCoin.style.animation = 'fadeOut 1s';
+		elemImage.style.animation = 'fadeOut 1s';
+		elemWinInfo.style.animation = 'fadeOut 1s';
+	} 
+	else if (type === 'hide') {
+
+		elemCurrentCoin.textContent = '';
+		elemWinInfo.textContent = '';
+		elemImage.style.visibility = 'hidden';
+	}
 }
 
 function getResult() {
+
+	elemGame = document.getElementById('game');
+	elemError = document.getElementById('error');
+
 	let coins, isFree;
 	let xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
+		if (this.readyState === 4 && this.status === 200) {
 			let resultObj = JSON.parse(xhttp.responseText);
 			coins = resultObj.coins;
 			isFree = resultObj.freeGame;
-			console.log(resultObj.num);
+		}
+		else if (this.status >= 400) {
+			elemGame.parentNode.removeChild(elemGame);
+			elemError.textContent = 'Error' + this.status + ': ' + this.statusText + '. Please refresh the page.';
 		}
 	};
 
@@ -162,16 +153,50 @@ function getResult() {
 	return [coins, isFree];
 }
 
+function onRtp() {
+
+	elemBar = document.getElementById('bar');
+	elemProgress = document.getElementById('progress-text');
+	elemGame = document.getElementById('game');
+	elemRtp = document.getElementById('rtp');
+	elemRtpResult = document.getElementById('rtp-result');
+
+	elemGame.parentNode.removeChild(elemGame);
+	elemProgress.textContent = 'RTP simulation';
+	elemRtp.style.visibility = 'visible';
+
+	let timerId = setInterval(getUserRtp, 1000);
+
+	setTimeout(() => { 
+		clearInterval(timerId);
+		let maxVal = Math.max(...rtpArr);
+		let arrAvg = rtpArr.reduce((a,b) => a + b, 0) / rtpArr.length;
+		elemRtpResult.textContent = 'RTP result: ' + arrAvg.toFixed(2) + '%';
+
+		elemBar.parentNode.removeChild(elemBar);
+		elemProgress.textContent = `Best result: ${Math.round(maxVal*50000)} coins won out of 500000 bets (RTP ${maxVal.toFixed(2)}%).`;
+		elemProgress.style.fontSize = '33%';
+		elemProgress.style.textShadow = '1px 1px 2px rgb(139, 139, 139)';  
+	}, 20500);
+}
+
 function getUserRtp() {
-	let elem = document.getElementById('bar'); 
-	console.log('start function');
+
+	elemRtp = document.getElementById('rtp');
+	elemBar = document.getElementById('bar');
+	elemRtpResult = document.getElementById('rtp-result');
+	elemError = document.getElementById('error');
+
 	width += 5;
-	rtpPerc = 0;
 	let xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
+		if (this.readyState === 4 && this.status === 200) {
 			let resultObj = JSON.parse(xhttp.responseText);
 			rtpPerc = resultObj.result;
+		}
+		else if (this.status >= 400) {
+			elemRtp.parentNode.removeChild(elemRtp);
+			elemError.textContent = 'Error ' + this.status + ': ' + this.statusText + '. Please refresh the page.';
 		}
 	};
 
@@ -180,7 +205,15 @@ function getUserRtp() {
 
 	rtpArr.push(rtpPerc);
 
-	elem.style.width = width + '%';
-	elem.textContent = Math.round(width) + '%';
-	document.getElementById('rtp-result').textContent = 'Current RTP: ' + rtpPerc.toFixed(2) + '%';
+	elemBar.style.width = width + '%';
+	elemBar.textContent = Math.round(width) + '%';
+	elemRtpResult.textContent = 'Current RTP: ' + rtpPerc.toFixed(2) + '%';
+}
+
+function onBackToGame() {
+
+	elemRtp = document.getElementById('rtp');
+
+	elemRtp.style.visibility = 'hidden';
+	location.reload();
 }

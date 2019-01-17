@@ -32,12 +32,12 @@ app.get('/testing', function(req, res) {
 	res.send({test: 'testing'});
 });
 
-app.get('/bet', function(req, res, next) {
+app.get('/bet', function(req, res) {
 	let result = controller.getRandomResult();
 	res.json({freeGame: result.free, coins: result.coins, num: result.num});
 });
 
-app.get('/rtp', function(req, res, next) {
+app.get('/rtp', function(req, res) {
 	let rtp = controller.getRtp();
 	let rtpPerc = rtp.win/rtp.bet*100;
 	res.json({result: rtpPerc});

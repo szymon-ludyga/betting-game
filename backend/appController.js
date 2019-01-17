@@ -13,8 +13,7 @@ let getRandomResult = () => {
 let getRtp = () => {
 	totalBet = 0;
 	totalWin = 0;
-	for(let i = 0; i < 500000; i++)
-	{
+	for (let i = 0; i < 500000; i++) {
 		totalBet += 10;
 		evaluate('rtp');
 	}
@@ -24,28 +23,23 @@ let getRtp = () => {
 
 let evaluate = (type) => {
 	num = Math.floor(Math.random()*20);
-	if(num < 5)
-	{
+	if (num < 5) {
 		coinsWon = 20;
 		totalWin += 20;
 		freeGame = false;
 	}
-	else if (num === 5)
-	{
+	else if (num === 5) {
 		coinsWon = 20;
 		totalWin += 20;
 		freeGame = true;
-		if (type  === 'rtp')
-		{
+		if (type  === 'rtp') {
 			evaluate('rtp');
 		}
 	}
-	else if (num === 6)
-	{
+	else if (num === 6) {
 		coinsWon = 0;
 		freeGame = true;
-		if (type  === 'rtp')
-		{
+		if (type  === 'rtp') {
 			evaluate('rtp');
 		}
 	}
