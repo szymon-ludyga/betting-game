@@ -4,7 +4,8 @@
   "description": "Betting game",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
+    "start:live": "nodemon app.js",
     "test": "mocha --exit --timeout 2000",
     "lint": "eslint .",
     "lt": "lt --port 3000"
