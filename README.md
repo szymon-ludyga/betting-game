@@ -16,7 +16,7 @@ cd betting-game
 
 npm install <-- install node packages
 
-npm run start <-- it should start the server of the application, if you don't have nodemon: npm install -g nodemon
+npm run start <-- start the application
 
 npm run test <-- testing application via Mocha/Chai
 

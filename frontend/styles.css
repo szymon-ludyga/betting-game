@@ -7,6 +7,7 @@
     margin-left: 55%;
     width: 45%;
     margin-top: -149px;
+    margin-bottom: 0px;
     display: grid;
     align-items: center;
     justify-content: center;
@@ -28,14 +29,14 @@ button {
     width: 40%;
     border: none;
     color: white;
-    height: 100px;
+    height: 80px;
     border-radius: 5px;
     padding: 10px 20px;
     text-align: center;
     margin: 0 auto;
     text-decoration: none;
     display: block;
-    font-size: 50px;
+    font-size: 40px;
     text-shadow: 2px 2px 4px #000000;
     box-shadow: 5px 5px 2px grey;
 }
@@ -47,7 +48,7 @@ button:active {
 
 
 .button-bet {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     background-color: rgba(204, 171, 25, 0.884);
     border: 5px solid rgba(78, 77, 8, 0.329);
     
@@ -62,27 +63,22 @@ button:active {
 }
 
 .button-rtp {
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 20px;
     background-color: rgba(214, 79, 55, 0.87);
     border: 5px solid rgba(153, 13, 13, 0.651);
 }
 
 p {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     text-shadow: 1px 1px 2px rgb(139, 139, 139);
 }
 
 img {
     visibility: hidden;
-}
-
-#result {
-    margin-top: 0px;
-    margin-bottom: 0px;
 }
 
 #rtp {
@@ -112,26 +108,27 @@ div {
     text-shadow: 1px 1px 2px rgb(28, 92, 20);
 }
 
+#view > #game > #free {
+    font-size: 75px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#view > #game > #result {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
 #error {
     color: red;
-}
-
-.fadeup {
-    position: relative;
-    animation-direction: alternate;
-}
-
-@keyframes fadeUp {
-    0%   {top: 75px;}
-    100%  {top: 0px;}
 }
 
 @media (max-width: 1200px) {
 
     button {
-        height: 90px;
+        height: 72px;
         padding: 9px 18px;
-        font-size: 45px;
+        font-size: 36px;
     }
 
     .button-goback {
@@ -142,19 +139,25 @@ div {
         width: 90%;
     }
 
-    #result {
-        margin-top: 0px;
-        margin-bottom: 0px;
-    }
-
     #view > div > div {
         font-size: 90%;
         margin-top: 18px;
         margin-bottom: 18px;
     }
 
+    #view > #game > #result {
+        font-size: 67.5px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    #view > #game > #free {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
     #view > #game > .grid-container {
-        margin-top: -149px;
+        margin-top: -131px;
         margin-left: 60%;
         width: 40%;  
     }
@@ -211,6 +214,11 @@ div {
         margin-bottom: 16px;
     }
 
+    #view > #game > #result {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
     .grid-container > div {
         font-size: 95%;
         padding: 8px 8px;
@@ -229,7 +237,7 @@ div {
     }
 
     #view > #game > .grid-container {
-        margin-top: -136px;
+        margin-top: -120px;
         margin-left: 59%;
         width: 41%;  
     }
@@ -274,6 +282,11 @@ div {
         margin-bottom: 14px;
     }
 
+    #view > #game > #result {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
     .grid-container > div {
         font-size: 95%;
         padding: 7px 7px;
@@ -292,7 +305,7 @@ div {
     }
 
     #view > #game > .grid-container {
-        margin-top: -121px;
+        margin-top: -107px;
         margin-left: 58%;
         width: 43%;  
     }
@@ -341,6 +354,11 @@ div {
         margin-bottom: 12px;
     }
 
+    #view > #game > #result {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
     .grid-container > div {
         font-size: 95%;
         padding: 6px 6px;
@@ -359,7 +377,7 @@ div {
     }
 
     #view > #game > .grid-container {
-        margin-top: -108px;
+        margin-top: -96px;
         margin-left: 56%;
         width: 44%;  
     }
@@ -395,6 +413,11 @@ div {
         margin-bottom: 10px;
     }
 
+    #view > #game > #result {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
     .grid-container > div {
         font-size: 95%;
         padding: 5px 5px;
@@ -413,7 +436,7 @@ div {
     }
 
     #view > #game > .grid-container {
-        margin-top: -93px;
+        margin-top: -83px;
         margin-left: 55%;
         width: 45%;  
     }
@@ -459,6 +482,11 @@ div {
         margin-bottom: 8px;
     }
 
+    #view > #game > #result {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
     .grid-container > div {
         font-size: 95%;
         padding: 4px 4px;
@@ -477,7 +505,7 @@ div {
     }
 
     #view > #game > .grid-container {
-        margin-top: -78px;
+        margin-top: -70px;
         margin-left: 53%;
         width: 47%;  
     }
@@ -517,6 +545,16 @@ div {
         width: 55%;  
     }
 
+}
+
+.fade {
+    position: relative;
+    animation-direction: alternate;
+}
+
+@keyframes fadeUp {
+    0%   {top: 75px;}
+    100%  {top: 0px;}
 }
 
 

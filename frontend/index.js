@@ -17,12 +17,14 @@ function onLoad() {
 function onBet(type) {
 
 	let snd = new Audio('content/cash.wav');
+	let sndCoin = new Audio('content/coin.wav');
 
 	elemResult = document.getElementById('result');
 
 	delay = 0;
 
 	if (type === 'normal') {
+		sndCoin.play();
 		moveCoins('-10', type);
 		
 		coins -= 10;
@@ -88,7 +90,7 @@ function moveCoins(coin, type) {
 		elemCurrentCoin.textContent = '- 10';
 		elemCurrentCoin.style.color = 'red';
 		elemCurrentCoin.style.animation = 'fadeUp 1.5s 1';
-		elemImage.style.animation = 'fadeUp 1.5s 1';
+		elemImage.style.animation = 'fadeIn 1.5s 1';
 	}
 	else if (coin === '20') {
 		elemImage.src = '../content/twocoins.jpg';
@@ -97,7 +99,7 @@ function moveCoins(coin, type) {
 		elemCurrentCoin.style.color = 'green';
 		elemCurrentCoin.style.marginLeft = '25px';
 		elemCurrentCoin.style.animation = 'fadeUp 1.5s 1';
-		elemImage.style.animation = 'fadeUp 1.5s 1';
+		elemImage.style.animation = 'fadeIn 1.5s 1';
 		if (type === 'free') {
 			elemWinInfo.textContent = 'Free Round!';
 			elemWinInfo.style.animation = 'fadeIn 1.5s 1';
@@ -143,7 +145,7 @@ function getResult() {
 		}
 		else if (this.status >= 400) {
 			elemGame.parentNode.removeChild(elemGame);
-			elemError.textContent = 'Error' + this.status + ': ' + this.statusText + '. Please refresh the page.';
+			elemError.textContent = 'Error ' + this.status + ': ' + this.statusText + '. Please refresh the page.';
 		}
 	};
 
