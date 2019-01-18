@@ -146,7 +146,6 @@ div {
     }
 
     #view > #game > #result {
-        font-size: 67.5px;
         margin-top: 0px;
         margin-bottom: 0px;
     }
@@ -215,6 +214,7 @@ div {
     }
 
     #view > #game > #result {
+        font-size: 80px;
         margin-top: 0px;
         margin-bottom: 0px;
     }
@@ -283,6 +283,7 @@ div {
     }
 
     #view > #game > #result {
+        font-size: 70px;
         margin-top: 0px;
         margin-bottom: 0px;
     }
@@ -355,6 +356,7 @@ div {
     }
 
     #view > #game > #result {
+        font-size: 60px;
         margin-top: 0px;
         margin-bottom: 0px;
     }
@@ -414,6 +416,7 @@ div {
     }
 
     #view > #game > #result {
+        font-size: 50px;
         margin-top: 0px;
         margin-bottom: 0px;
     }
@@ -483,6 +486,7 @@ div {
     }
 
     #view > #game > #result {
+        font-size: 40px;
         margin-top: 0px;
         margin-bottom: 0px;
     }
