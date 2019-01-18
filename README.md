@@ -8,7 +8,7 @@ git init
 
 git clone https://github.com/SzymonLudyga/betting-game.git
 
-# Browse to directory where server.js is.
+# Browse to directory where app.js file is present.
 
 cd betting-game
 
@@ -18,7 +18,9 @@ npm install <-- install node packages
 
 npm run start <-- start the application
 
-npm run test <-- testing application via Mocha/Chai
+# Testing application via Mocha/Chai:
+
+npm run test
 
 # Application available at:
 
