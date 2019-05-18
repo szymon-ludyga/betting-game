@@ -15,18 +15,18 @@ if (process.env.NODE_ENV != 'test') {
 app.use('/content', express.static('./content'));
 app.use(express.static('./frontend'));
 
-app.use((req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader(
-		'Access-Control-Allow-Headers',
-		'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-	);
-	res.setHeader(
-		'Access-Control-Allow-Methods',
-		'GET, POST, PATCH, PUT, DELETE, OPTIONS'
-	);
-	next();
-});
+// app.use((req, res, next) => {
+// 	res.setHeader('Access-Control-Allow-Origin', '*');
+// 	res.setHeader(
+// 		'Access-Control-Allow-Headers',
+// 		'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+// 	);
+// 	res.setHeader(
+// 		'Access-Control-Allow-Methods',
+// 		'GET, POST, PATCH, PUT, DELETE, OPTIONS'
+// 	);
+// 	next();
+// });
 
 app.get('/testing', function(req, res) {
 	res.send({test: 'testing'});

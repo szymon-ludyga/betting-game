@@ -14,7 +14,7 @@ cd betting-game
 
 # In terminal type in:
 
-npm install <-- install node packages
+npm i <-- install node packages
 
 npm run start <-- start the application
 
