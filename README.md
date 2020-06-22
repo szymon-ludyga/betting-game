@@ -1,4 +1,4 @@
-# Application Start:
+# Application start:
 
 npm i
 
