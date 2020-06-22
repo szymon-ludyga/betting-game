@@ -1,22 +1,8 @@
-# Application via localhost:
+# Application Start:
 
-mkdir new-app
+npm i
 
-cd new-app
-
-git init
-
-git clone https://github.com/SzymonLudyga/betting-game.git
-
-# Browse to directory where app.js file is present.
-
-cd betting-game
-
-# In terminal type in:
-
-npm i <-- install node packages
-
-npm run start <-- start the application
+npm run start
 
 # Testing application via Mocha/Chai:
 
