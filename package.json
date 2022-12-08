@@ -13,7 +13,7 @@
   "author": "Szymon Ludyga",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "morgan": "^1.9.1"
   },
   "devDependencies": {
